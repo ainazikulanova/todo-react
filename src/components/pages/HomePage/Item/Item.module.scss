@@ -1,0 +1,124 @@
+.task {
+  position: relative;
+  padding: 16px 9px;
+  height: auto;
+  min-height: 35px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 24px;
+  background-color: #fff;
+  border: 1px solid #cfcfcf;
+  overflow: hidden;
+  cursor: pointer;
+
+  @media (max-width: 520px) {
+    gap: 13px;
+    font-size: 14px;
+  }
+
+  &.checked {
+    color: #a6a6a6;
+    text-decoration: line-through;
+  }
+}
+
+.checkbox {
+  position: relative;
+  appearance: none;
+  width: 30px;
+  height: 30px;
+  border: 2px solid #cfcfcf;
+  border-radius: 50%;
+  background-color: white;
+  cursor: pointer;
+  flex-shrink: 0;
+
+  &:checked {
+    border-color: #5ead61;
+
+    &::after {
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      content: "\2713";
+      position: absolute;
+      font-size: 25px;
+      color: #5ead61;
+    }
+
+    & + label {
+      text-decoration: line-through;
+      color: #a6a6a6;
+    }
+  }
+}
+
+.text {
+  display: block;
+  max-width: 400px;
+  box-sizing: border-box;
+  display: block;
+  word-wrap: break-word;
+  overflow-wrap: anywhere;
+  white-space: normal;
+  line-height: 1.4;
+  cursor: pointer;
+
+  @media (max-width: 520px) {
+    font-size: 16px;
+    max-width: 200px;
+    max-height: 4em;
+    overflow-y: auto;
+  }
+}
+
+.editInput {
+  position: absolute;
+  display: block;
+  padding: 15px 15px 15px 42px;
+  width: 437px;
+  height: auto;
+  min-height: 35px;
+  font-size: 24px;
+  transition: box-shadow 0.3s ease;
+  cursor: pointer;
+  outline: 1px solid #eea0a0e1;
+  border: 1px solid #eea0a0e1;
+  box-shadow: 0 0 10px #eea0a0e1;
+  z-index: 2;
+
+  @media (max-width: 520px) {
+    position: absolute;
+    padding: 15px;
+    width: 275px;
+    height: 16px;
+    font-size: 16px;
+  }
+}
+
+.task:hover .deleteBtn {
+  opacity: 1;
+}
+
+.deleteBtn {
+  position: absolute;
+  z-index: 1;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  font-size: 28px;
+  line-height: 40px;
+  text-align: center;
+  color: #a6a6a6;
+  opacity: 0;
+  transition: all 0.2s;
+  cursor: pointer;
+  background: none;
+  border: none;
+
+  @media (max-width: 520px) {
+    right: 10px;
+    opacity: 1;
+  }
+}
