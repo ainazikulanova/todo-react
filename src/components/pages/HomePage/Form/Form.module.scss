@@ -1,32 +1,33 @@
+.root {
+  position: relative;
+}
+
 .arrow {
   position: absolute;
-  z-index: 10;
   display: none;
   padding: 10px;
-  top: 50%;
+  top: 51%;
   left: 6%;
   transform: translate(-50%, -55%);
   font-size: 20px;
   color: #949494;
-  background: #fff;
+  background: transparent;
   border: none;
+  cursor: pointer;
   transition: 0.2s color;
+  z-index: 10;
 
-  @media (hover: hover) {
-    &:hover,
-    &:active {
-      color: #484848;
-    }
+  &:hover {
+    color: #484848;
   }
 
   &.visible {
     display: block;
-    cursor: pointer;
   }
 
   @media (max-width: 520px) {
-    left: 9%;
-    transform: translate(-50%, -50%);
+    left: 20px;
+    font-size: 18px;
   }
 }
 

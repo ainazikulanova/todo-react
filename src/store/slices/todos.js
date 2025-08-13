@@ -36,16 +36,17 @@ const todoSlice = createSlice({
     setFilter: (state, action) => {
       state.filter = action.payload;
     },
-    toggleAll: (state) => {
-      const allCompleted = state.tasks.every((t) => t.isCompleted);
-      state.tasks.forEach((t) => (t.isCompleted = !allCompleted));
-    },
-
     setEditingTaskId: (state, action) => {
       state.editingTaskId = action.payload;
     },
     clearEditingTaskId: (state) => {
       state.editingTaskId = null;
+    },
+    toggleAllTasks: (state) => {
+      const allCompleted = state.tasks.every((task) => task.isCompleted);
+      state.tasks.forEach((task) => {
+        task.isCompleted = !allCompleted;
+      });
     },
   },
 });
@@ -57,9 +58,9 @@ export const {
   updateTask,
   clearCompleted,
   setFilter,
-  toggleAll,
   setEditingTaskId,
   clearEditingTaskId,
+  toggleAllTasks,
 } = todoSlice.actions;
 
 export default todoSlice.reducer;

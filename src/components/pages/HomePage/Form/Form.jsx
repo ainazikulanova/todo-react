@@ -1,11 +1,14 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { addTask } from "../../../../store/slices/todos";
+import { useDispatch, useSelector } from "react-redux";
+import { addTask, toggleAllTasks } from "../../../../store/slices/todos";
+import cn from "classnames";
 import s from "./Form.module.scss";
 
 export default function Form() {
   const [inputValue, setInputValue] = useState("");
   const dispatch = useDispatch();
+  const tasks = useSelector((state) => state.todos.tasks);
+  const hasTasks = tasks.length > 0;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -15,11 +18,22 @@ export default function Form() {
     }
   };
 
+  const handleToggleAll = () => {
+    dispatch(toggleAllTasks());
+  };
+
   return (
     <form onSubmit={handleSubmit} className={s.root}>
-      <button className={s.arrow} type="button">
-        ▼
-      </button>
+      {hasTasks && (
+        <button
+          className={cn(s.arrow, s.visible)}
+          type="button"
+          onClick={handleToggleAll}
+          aria-label="Toggle all tasks"
+        >
+          ▼
+        </button>
+      )}
       <input
         className={s.input}
         type="text"
