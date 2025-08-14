@@ -1,16 +1,17 @@
+import { forwardRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setFilter } from "../../../../store/slices/todos";
 import cn from "classnames";
 import s from "./Filters.module.scss";
 
-export default function Filters() {
+const Filters = forwardRef((props, ref) => {
   const { filter } = useSelector((state) => state.todos);
   const dispatch = useDispatch();
 
   const filters = ["All", "Active", "Completed"];
 
   return (
-    <ul className={s.root}>
+    <ul ref={ref} className={s.root}>
       {filters.map((f) => (
         <li key={f}>
           <button
@@ -23,4 +24,6 @@ export default function Filters() {
       ))}
     </ul>
   );
-}
+});
+
+export default Filters;

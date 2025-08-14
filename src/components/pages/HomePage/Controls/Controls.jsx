@@ -1,8 +1,9 @@
+import { forwardRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { clearCompleted } from "../../../../store/slices/todos";
 import s from "./Controls.module.scss";
 
-export default function Controls() {
+const Controls = forwardRef((props, ref) => {
   const { tasks } = useSelector((state) => state.todos);
   const dispatch = useDispatch();
 
@@ -10,7 +11,7 @@ export default function Controls() {
   const hasCompletedTasks = tasks.some((t) => t.isCompleted);
 
   return (
-    <div className={s.root}>
+    <div ref={ref} className={s.root}>
       <span className={s.counter}>
         {activeTasksCount} item{activeTasksCount !== 1 ? "s" : ""} left
       </span>
@@ -24,4 +25,6 @@ export default function Controls() {
       )}
     </div>
   );
-}
+});
+
+export default Controls;
