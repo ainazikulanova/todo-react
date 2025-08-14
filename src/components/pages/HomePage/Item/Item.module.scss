@@ -80,12 +80,12 @@
   width: 437px;
   height: auto;
   min-height: 35px;
-  font-size: 24px;
-  transition: box-shadow 0.3s ease;
-  cursor: pointer;
   outline: 1px solid #eea0a0e1;
   border: 1px solid #eea0a0e1;
   box-shadow: 0 0 10px #eea0a0e1;
+  font-size: 24px;
+  transition: box-shadow 0.3s ease;
+  cursor: pointer;
   z-index: 2;
 
   @media (max-width: 520px) {
@@ -103,19 +103,19 @@
 
 .deleteBtn {
   position: absolute;
-  z-index: 1;
+  opacity: 0;
   right: 20px;
   width: 40px;
   height: 40px;
+  border: none;
+  background: none;
   font-size: 28px;
   line-height: 40px;
   text-align: center;
   color: #a6a6a6;
-  opacity: 0;
-  transition: all 0.2s;
   cursor: pointer;
-  background: none;
-  border: none;
+  z-index: 1;
+  transition: all 0.2s;
 
   @media (max-width: 520px) {
     right: 10px;
