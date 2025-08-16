@@ -4,6 +4,7 @@ import {
   selectTasks,
   selectFilter,
 } from "../../../../store/selectors/todoSelectors";
+import { FILTERS } from "../constants/filters";
 import Item from "../Item";
 import s from "./List.module.scss";
 
@@ -13,9 +14,9 @@ const List = forwardRef((props, ref) => {
 
   const filteredTasks = tasks.filter((task) => {
     switch (filter) {
-      case "Active":
+      case FILTERS.ACTIVE:
         return !task.isCompleted;
-      case "Completed":
+      case FILTERS.COMPLETED:
         return task.isCompleted;
       default:
         return true;

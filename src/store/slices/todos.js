@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { FILTERS } from "../../components/pages/HomePage/constants/filters";
 
 const initialState = {
   tasks: JSON.parse(localStorage.getItem("tasks")) || [],
-  filter: localStorage.getItem("selectedFilter") || "All",
+  filter: localStorage.getItem("selectedFilter") || FILTERS.ALL,
   editingTaskId: null,
 };
 
