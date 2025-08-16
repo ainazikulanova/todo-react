@@ -12,12 +12,40 @@ import cn from "classnames";
 import s from "./Item.module.scss";
 
 export default function Item({ task }) {
-  const dispatch = useDispatch();
-  const editingTaskId = useSelector(selectEditingTaskId);
-  const isEditing = editingTaskId === task.id;
   const [editText, setEditText] = useState(task.text);
   const editInputRef = useRef(null);
   const taskRef = useRef(null);
+
+  const dispatch = useDispatch();
+  const editingTaskId = useSelector(selectEditingTaskId);
+
+  const isEditing = editingTaskId === task.id;
+
+  const handleToggle = () => dispatch(toggleTask(task.id));
+  const handleDelete = () => dispatch(deleteTask(task.id));
+
+  const handleEdit = () => {
+    dispatch(setEditingTaskId(task.id));
+  };
+
+  const handleEditSubmit = () => {
+    const trimmed = editText.trim();
+    if (trimmed) {
+      dispatch(updateTask({ id: task.id, text: trimmed }));
+    } else {
+      dispatch(deleteTask(task.id));
+    }
+    dispatch(clearEditingTaskId());
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleEditSubmit();
+    } else if (e.key === "Escape") {
+      setEditText(task.text);
+      dispatch(clearEditingTaskId());
+    }
+  };
 
   useEffect(() => {
     setEditText(task.text);
@@ -48,32 +76,6 @@ export default function Item({ task }) {
     };
   }, [isEditing, task.id, task.text, dispatch]);
 
-  const handleToggle = () => dispatch(toggleTask(task.id));
-  const handleDelete = () => dispatch(deleteTask(task.id));
-
-  const handleEdit = () => {
-    dispatch(setEditingTaskId(task.id));
-  };
-
-  const handleEditSubmit = () => {
-    const trimmed = editText.trim();
-    if (trimmed) {
-      dispatch(updateTask({ id: task.id, text: trimmed }));
-    } else {
-      dispatch(deleteTask(task.id));
-    }
-    dispatch(clearEditingTaskId());
-  };
-
-  const handleKeyDown = (e) => {
-    if (e.key === "Enter") {
-      handleEditSubmit();
-    } else if (e.key === "Escape") {
-      setEditText(task.text);
-      dispatch(clearEditingTaskId());
-    }
-  };
-
   return (
     <li
       ref={taskRef}
@@ -97,9 +99,7 @@ export default function Item({ task }) {
           className={s.editInput}
         />
       ) : (
-        <span className={s.text} onMouseDown={(e) => e.preventDefault()}>
-          {task.text}
-        </span>
+        <span className={s.text}>{task.text}</span>
       )}
 
       <button onClick={handleDelete} className={s.deleteBtn}>
