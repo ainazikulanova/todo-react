@@ -7,12 +7,13 @@ import {
   setEditingTaskId,
   clearEditingTaskId,
 } from "../../../../store/slices/todos";
+import { selectEditingTaskId } from "../../../../store/selectors/todoSelectors";
 import cn from "classnames";
 import s from "./Item.module.scss";
 
 export default function Item({ task }) {
   const dispatch = useDispatch();
-  const editingTaskId = useSelector((state) => state.todos.editingTaskId);
+  const editingTaskId = useSelector(selectEditingTaskId);
   const isEditing = editingTaskId === task.id;
   const [editText, setEditText] = useState(task.text);
   const editInputRef = useRef(null);

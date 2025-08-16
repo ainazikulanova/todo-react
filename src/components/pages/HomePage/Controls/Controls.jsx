@@ -1,10 +1,11 @@
 import { forwardRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { clearCompleted } from "../../../../store/slices/todos";
+import { selectTasks } from "../../../../store/selectors/todoSelectors";
 import s from "./Controls.module.scss";
 
 const Controls = forwardRef((props, ref) => {
-  const { tasks } = useSelector((state) => state.todos);
+  const tasks = useSelector(selectTasks);
   const dispatch = useDispatch();
 
   const activeTasksCount = tasks.filter((t) => !t.isCompleted).length;

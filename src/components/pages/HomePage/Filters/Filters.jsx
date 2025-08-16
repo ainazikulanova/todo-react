@@ -1,11 +1,12 @@
 import { forwardRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setFilter } from "../../../../store/slices/todos";
+import { selectFilter } from "../../../../store/selectors/todoSelectors";
 import cn from "classnames";
 import s from "./Filters.module.scss";
 
 const Filters = forwardRef((props, ref) => {
-  const { filter } = useSelector((state) => state.todos);
+  const filter = useSelector(selectFilter);
   const dispatch = useDispatch();
 
   const filters = ["All", "Active", "Completed"];

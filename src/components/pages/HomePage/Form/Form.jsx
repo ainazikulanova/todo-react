@@ -1,13 +1,14 @@
 import { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addTask, toggleAllTasks } from "../../../../store/slices/todos";
+import { selectTasks } from "../../../../store/selectors/todoSelectors";
 import cn from "classnames";
 import s from "./Form.module.scss";
 
 export default function Form({ excludedRefs }) {
   const [inputValue, setInputValue] = useState("");
   const dispatch = useDispatch();
-  const tasks = useSelector((state) => state.todos.tasks);
+  const tasks = useSelector(selectTasks);
   const hasTasks = tasks.length > 0;
   const formRef = useRef(null);
 

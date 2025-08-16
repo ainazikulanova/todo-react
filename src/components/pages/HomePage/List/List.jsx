@@ -1,10 +1,15 @@
 import { forwardRef } from "react";
 import { useSelector } from "react-redux";
+import {
+  selectTasks,
+  selectFilter,
+} from "../../../../store/selectors/todoSelectors";
 import Item from "../Item";
 import s from "./List.module.scss";
 
 const List = forwardRef((props, ref) => {
-  const { tasks, filter } = useSelector((state) => state.todos);
+  const tasks = useSelector(selectTasks);
+  const filter = useSelector(selectFilter);
 
   const filteredTasks = tasks.filter((task) => {
     switch (filter) {
