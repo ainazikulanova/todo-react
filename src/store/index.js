@@ -7,10 +7,4 @@ const store = configureStore({
   },
 });
 
-store.subscribe(() => {
-  const state = store.getState();
-  localStorage.setItem("tasks", JSON.stringify(state.todos.tasks));
-  localStorage.setItem("selectedFilter", state.todos.filter);
-});
-
 export { store };

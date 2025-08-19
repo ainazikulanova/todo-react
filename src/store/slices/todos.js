@@ -18,24 +18,30 @@ const todoSlice = createSlice({
         isCompleted: false,
       };
       state.tasks.unshift(newTask);
+      localStorage.setItem("tasks", JSON.stringify(state.tasks));
     },
     toggleTask: (state, action) => {
       const task = state.tasks.find((t) => t.id === action.payload);
       if (task) task.isCompleted = !task.isCompleted;
+      localStorage.setItem("tasks", JSON.stringify(state.tasks));
     },
     deleteTask: (state, action) => {
       state.tasks = state.tasks.filter((t) => t.id !== action.payload);
+      localStorage.setItem("tasks", JSON.stringify(state.tasks));
     },
     updateTask: (state, action) => {
       const { id, text } = action.payload;
       const task = state.tasks.find((t) => t.id === id);
       if (task) task.text = text;
+      localStorage.setItem("tasks", JSON.stringify(state.tasks));
     },
     clearCompleted: (state) => {
       state.tasks = state.tasks.filter((t) => !t.isCompleted);
+      localStorage.setItem("tasks", JSON.stringify(state.tasks));
     },
     setFilter: (state, action) => {
       state.filter = action.payload;
+      localStorage.setItem("selectedFilter", action.payload);
     },
     setEditingTaskId: (state, action) => {
       state.editingTaskId = action.payload;
@@ -48,6 +54,7 @@ const todoSlice = createSlice({
       state.tasks.forEach((task) => {
         task.isCompleted = !allCompleted;
       });
+      localStorage.setItem("tasks", JSON.stringify(state.tasks));
     },
   },
 });
