@@ -1,0 +1,36 @@
+.root {
+  padding: 10px 25px;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  gap: 10px;
+  border: 1px solid #cfcfcf;
+  background: #fff;
+
+  @media (max-width: 520px) {
+    padding: 15px 20px;
+    flex-wrap: wrap;
+  }
+}
+
+.counter {
+  font-size: 13px;
+}
+
+.clearBtn {
+  font-size: 16px;
+  background: #fff;
+  color: #000;
+  border: none;
+  cursor: pointer;
+
+  @media (max-width: 520px) {
+    font-size: 14px;
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

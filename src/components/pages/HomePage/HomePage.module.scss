@@ -1,0 +1,22 @@
+.root {
+  margin: auto;
+  max-width: 500px;
+}
+
+.title {
+  text-align: center;
+  color: #b83f45;
+  font-size: 80px;
+}
+
+@media (max-width: 1024px) {
+  .title {
+    font-size: 60px;
+  }
+}
+
+@media (max-width: 520px) {
+  .title {
+    font-size: 40px;
+  }
+}
